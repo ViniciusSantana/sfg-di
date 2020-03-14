@@ -4,12 +4,12 @@ import guru.springframework.sfgdi.services.GreetingServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class PropertyIntectedControllerTest {
-    PropertyIntectedController controller;
+class PropertyInjectedControllerTest {
+    PropertyInjectedController controller;
 
     @BeforeEach
     void setUp() {
-        controller = new PropertyIntectedController();
+        controller = new PropertyInjectedController();
         controller.greetingService = new GreetingServiceImpl();
     }
 
