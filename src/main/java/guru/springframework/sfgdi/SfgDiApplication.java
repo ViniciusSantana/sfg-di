@@ -5,6 +5,7 @@ import guru.springframework.sfgdi.dependencyinjection.controllers.MyController;
 import guru.springframework.sfgdi.dependencyinjection.controllers.PropertyInjectedController;
 import guru.springframework.sfgdi.dependencyinjection.controllers.SetterInjectionController;
 import guru.springframework.sfgdi.profile.controllers.I18nController;
+import guru.springframework.sfgdi.profile.controllers.PetController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -14,6 +15,10 @@ public class SfgDiApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(SfgDiApplication.class, args);
+
+		PetController petController = ctx.getBean("petController", PetController.class);
+		System.out.println("--- The Best Pet is ---");
+		System.out.println(petController.whichPetIsTheBest());
 
 		I18nController i18nController = (I18nController) ctx.getBean("i18nController");
 		System.out.println("------- I18N Profiles");
