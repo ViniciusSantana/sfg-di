@@ -4,6 +4,7 @@ import guru.springframework.sfgdi.dependencyinjection.controllers.ConstructorInj
 import guru.springframework.sfgdi.dependencyinjection.controllers.MyController;
 import guru.springframework.sfgdi.dependencyinjection.controllers.PropertyInjectedController;
 import guru.springframework.sfgdi.dependencyinjection.controllers.SetterInjectionController;
+import guru.springframework.sfgdi.externalproperties.FakeDataSource;
 import guru.springframework.sfgdi.profile.controllers.I18nController;
 import guru.springframework.sfgdi.profile.controllers.PetController;
 import org.springframework.boot.SpringApplication;
@@ -15,7 +16,18 @@ public class SfgDiApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(SfgDiApplication.class, args);
+		injectionType(ctx);
+		datasourceConfigurationFile(ctx);
 
+	}
+
+	private static void datasourceConfigurationFile(ApplicationContext ctx) {
+		System.out.println("-----------Datasource Config");
+		FakeDataSource fakeDataSource = (FakeDataSource) ctx.getBean(FakeDataSource.class);
+		System.out.println(fakeDataSource);
+	}
+
+	private static void injectionType(ApplicationContext ctx) {
 		PetController petController = ctx.getBean("petController", PetController.class);
 		System.out.println("--- The Best Pet is ---");
 		System.out.println(petController.whichPetIsTheBest());
@@ -45,6 +57,7 @@ public class SfgDiApplication {
 		ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) ctx.getBean("constructorInjectedController");
 
 		System.out.println(constructorInjectedController.getGreeting());
+
 	}
 
 }
